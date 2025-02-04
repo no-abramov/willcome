@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- See gratitude (IsAtlant.Theme/gratitude.txt) -->
+
+    <ResourceDictionary.MergedDictionaries>
+        
+        <ResourceDictionary Source="/Theme;component/Themes/Colors/WC-UI-BrushColor.xaml"/>
+
+        <ResourceDictionary Source="/Theme;component/Themes/Values/Numerics.xaml"/>
+
+        <ResourceDictionary Source="/Theme;component/Themes/Styles/WC-UI-Window.xaml"/>
+        <ResourceDictionary Source="/Theme;component/Themes/Styles/WC-UI-Button.xaml"/>
+        <ResourceDictionary Source="/Theme;component/Themes/Styles/WC-UI-TextBox.xaml"/>
+        <ResourceDictionary Source="/Theme;component/Themes/Styles/WC-UI-Texts.xaml"/>
+        <ResourceDictionary Source="/Theme;component/Themes/Styles/WC-UI-TabControl.xaml"/>
+        <ResourceDictionary Source="/Theme;component/Themes/Styles/WC-UI-ScrollBar.xaml"/>
+
+        <ResourceDictionary Source="/Theme;component/Themes/Icons/WC-UI-VectorPath.xaml"/>
+        <ResourceDictionary Source="/Theme;component/Themes/Styles/WC-UI-VectorImages.xaml"/>
+
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

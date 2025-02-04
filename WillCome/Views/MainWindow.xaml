@@ -1,0 +1,219 @@
+﻿<Core:WindowControl xmlns:Core="clr-namespace:Theme.Core.Controls;assembly=Theme" x:Class="WillCome.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:convert="clr-namespace:WillCome.Core.Converters"
+        mc:Ignorable="d" WindowState="Maximized" Width="1200" Height="600" BorderThickness="0" 
+        Style="{StaticResource StyleWindow}">
+
+    <Core:WindowControl.Resources>
+        <convert:IntToIconConverter x:Key="IntToIconConverter"/>
+    </Core:WindowControl.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding CloseAppCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:CallMethodAction TargetObject="{Binding}" MethodName="MainView_Loaded"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Background="{DynamicResource ToolBasicBackgroundBrush}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel x:Name="MenuPanel" LastChildFill="True" Background="{DynamicResource ToolBasicBackgroundBrush}" HorizontalAlignment="Left" Width="190">
+            <DockPanel.Style>
+                <Style TargetType="DockPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=MenuToggleButton}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width" To="44" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width" To="190" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DockPanel.Style>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>              <!-- Верхняя часть с логотипом и кнопкой -->
+                    <RowDefinition Height="*"/>                 <!-- Центральная часть с пунктами меню -->
+                    <RowDefinition Height="Auto"/>              <!-- Нижняя часть с «Мой профиль» и «Настройки» -->
+                </Grid.RowDefinitions>
+
+                <!-- Верхняя часть: логотип и кнопка -->
+                <StackPanel Grid.Row="0">
+                    <Grid Height="50" VerticalAlignment="Top" Margin="10,0,10,50">
+                        <Image x:Name="LogoImage" Source="{StaticResource di_logo_will_come_mini_xaml}" SnapsToDevicePixels="True" UseLayoutRounding="True" Height="16" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=MenuToggleButton}" Value="False">
+                                            <Setter Property="Opacity" Value="1"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=MenuToggleButton}" Value="True">
+                                            <Setter Property="Opacity" Value="0"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <ToggleButton x:Name="MenuToggleButton" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border Background="{TemplateBinding Background}" CornerRadius="4" Padding="4">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <Image Source="{StaticResource di_ic_menu_open_xaml}" Width="16" Height="16"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Content">
+                                                <Setter.Value>
+                                                    <Image Source="{StaticResource di_ic_menu_close_xaml}" Width="16" Height="16"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource BackgroundPressBrush.Accent4}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </Grid>
+                </StackPanel>
+
+                <!-- Центральная часть: список пунктов меню -->
+                <StackPanel Grid.Row="1" VerticalAlignment="Top">
+                    <ItemsControl ItemsSource="{Binding ItemsMenuData}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding Command}" Background="Transparent" BorderThickness="0" Width="190" Height="40" HorizontalAlignment="Stretch">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource BackgroundPressBrush.Accent4}"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <DockPanel Width="190" Height="40" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                        <Image Source="{Binding Icon, Converter={StaticResource IntToIconConverter}}" Width="20" Height="20" HorizontalAlignment="Left" Margin="12,0,12,0" />
+                                        <TextBlock Text="{Binding Title}" Style="{DynamicResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundActiveBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" Height="Auto" Margin="0,2,0,0"/>
+                                    </DockPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <!-- Нижняя часть: «Поддержка», «Мой профиль» и «Настройки» -->
+                <StackPanel Grid.Row="2" Margin="0,20,0,10">
+
+                    <Button Command="{Binding SupportCommand}" Background="Transparent" BorderThickness="0" Width="190" Height="40" HorizontalAlignment="Stretch">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BackgroundPressBrush.Accent4}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <DockPanel Width="190" Height="40" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Source="{StaticResource di_ic_menu_support_xaml}" Width="20" Height="20" HorizontalAlignment="Left" Margin="12,0,12,0"/>
+                            <TextBlock Text="Поддержка" Style="{DynamicResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundActiveBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" Height="Auto" Margin="0,2,0,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Button Command="{Binding MyProfileCommand}" Background="Transparent" BorderThickness="0" Width="190" Height="40" HorizontalAlignment="Stretch">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BackgroundPressBrush.Accent4}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <DockPanel Width="190" Height="40" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <Image Source="{StaticResource di_ic_menu_profile_xaml}" Width="20" Height="20" HorizontalAlignment="Left" Margin="12,0,12,0"/>
+                            <TextBlock Text="Мой профиль" Style="{DynamicResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundActiveBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" Height="Auto" Margin="0,2,0,0"/>
+                        </DockPanel>
+                    </Button>
+
+                    <Button Command="{Binding SettingsCommand}" Background="Transparent" BorderThickness="0" Width="190" Height="40" HorizontalAlignment="Stretch">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BackgroundPressBrush.Accent4}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <DockPanel Width="190" Height="40" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <Image Source="{StaticResource di_ic_menu_settings_xaml}" Width="20" Height="20" HorizontalAlignment="Left" Margin="12,0,12,0"/>
+                            <TextBlock Text="Настройки" Style="{DynamicResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundActiveBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" Height="Auto" Margin="0,2,0,0"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+
+        <!-- Правая основная часть: WorkspaceViewModel -->
+        <TabControl Grid.Column="1" IsSynchronizedWithCurrentItem="True" Margin="10"
+            ItemContainerStyle="{DynamicResource StyleTabItemMain}"
+            ItemsSource="{Binding Workspaces}">
+            <TabControl.Style>
+                <Style TargetType="TabControl" BasedOn="{StaticResource StyleTabControlMain}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource Self}}" Value="1">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers> 
+                </Style>
+            </TabControl.Style>
+        </TabControl>
+        
+    </Grid>
+    
+</Core:WindowControl>

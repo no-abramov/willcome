@@ -1,0 +1,43 @@
+﻿<Application x:Class="WillCome.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WillCome.Core.Converters"
+             xmlns:vm="clr-namespace:WillCome.ViewModels"
+             xmlns:v="clr-namespace:WillCome.Views">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <local:IntToColorConverter x:Key="IntToColorConverter" />
+            <local:DaysRemainingConverter x:Key="DaysRemainingConverter" />
+            <local:TaskSummaryConverter x:Key="TaskSummaryConverter" />
+            
+            
+            <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <local:FormStateToVisibilityConverter x:Key="FormStateToVisibilityLoginConverter" TargetState="Login"/>
+            <local:FormStateToVisibilityConverter x:Key="FormStateToVisibilityRegisterConverter" TargetState="Register"/>
+            <local:FormStateToVisibilityConverter x:Key="FormStateToVisibilityForgotPasswordConverter" TargetState="ForgotPassword"/>
+            <local:NotificationStatusToIconConverter x:Key="NotificationStatusToIconConverter"/>
+
+            <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+                <v:DashboardView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:DealViewModel}">
+                <v:DealView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:TaskCasesViewModel}">
+                <v:TaskCasesView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:CustomerBaseViewModel}">
+                <v:CustomerBaseView/>
+            </DataTemplate>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Theme;component/Themes/Package/WC-UI-Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

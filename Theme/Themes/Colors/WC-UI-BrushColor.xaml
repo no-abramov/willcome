@@ -1,0 +1,186 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:Options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/Options"
+                    mc:Ignorable="Options">
+
+    <!--#region Base Color-->
+
+    <!-- Цвета фона (Background Colors) -->
+    <!-- Используются для фонов кнопок, элементов управления, состояния активного, наведения, нажатия и неактивного состояния -->
+    <Color x:Key="BackgroundBehindColor">#FCFCFC</Color>
+    <Color x:Key="BackgroundActiveColor">#53A7DC</Color>
+    <Color x:Key="BackgroundHoverColor">#30BAE5</Color>
+    <Color x:Key="BackgroundPressColor">#017ABD</Color>
+    <Color x:Key="BackgroundInactiveColor">#D5D3D3</Color>
+
+    <!-- Цвета границ (Border Colors) -->
+    <!-- Используются для границ кнопок, состояний активного, наведения, нажатия и неактивного состояния -->
+    <Color x:Key="BorderBehindColor">#FCFCFC</Color>
+    <Color x:Key="BorderActiveColor">#0090BC</Color>
+    <Color x:Key="BorderHoverColor">#30BAE5</Color>
+    <Color x:Key="BorderPressColor">#017ABD</Color>
+    <Color x:Key="BorderInactiveColor">#D5D3D3</Color>
+
+    <!-- Цвета текста (Foreground Colors) -->
+    <!-- Используются для текста на кнопках и элементах управления, в активных, наведённых, нажатых и неактивных состояниях -->
+    <Color x:Key="ForegroundBehindColor">#FCFCFC</Color>
+    <Color x:Key="ForegroundActiveColor">#0B062D</Color>
+    <Color x:Key="ForegroundSecondActiveColor">#85929F</Color>
+    <Color x:Key="ForegroundHoverColor">#443D3D</Color>
+    <Color x:Key="ForegroundPressColor">#6C6666</Color>
+    <Color x:Key="ForegroundInactiveColor">#85929F</Color>
+
+    <!-- Цвета гиперссылок (Hyperlink Colors) -->
+    <!-- Используются для гиперссылок в активных и наведённых состояниях -->
+    <Color x:Key="ForegroundHyperlinkActiveColor">#40ACEF</Color>
+    <Color x:Key="ForegroundHyperlinkHoverColor">#2A87C0</Color>
+
+    <!-- Цвета панели инструментов (Toolbar Colors) -->
+    <!-- Используются для фона панели инструментов и кнопок на панели -->
+    <Color x:Key="ToolBarBackgroundColor">#ECF1F3</Color>
+    <Color x:Key="ToolBarButtonColor">#808080</Color>
+    <Color x:Key="ToolMenuIconColor">#85929F</Color>
+    <Color x:Key="ToolLineColor">#F6F6F6</Color>
+    <Color x:Key="ToolPanelColor">#F2F2F2</Color>
+    <Color x:Key="ToolShadowColor">#585858</Color>
+    <Color x:Key="ToolBasicBackgroundColor">#ECF1F3</Color>
+    
+    <!-- Цвета панели-оповещений (Icon/Panel Colors) -->
+    <!-- Используются для фона панели инструментов и кнопок на панели -->
+    <Color x:Key="MessageColor">#53A7DC</Color>
+    <Color x:Key="SuccessColor">#28B728</Color>
+    <Color x:Key="MistakeColor">#EE4C4C</Color>
+
+    <!--#endregion-->
+
+    <!--#region Base Brush-->
+
+    <SolidColorBrush x:Key="BackgroundBehindBrush" Color="{StaticResource BackgroundBehindColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundActiveBrush" Color="{StaticResource BackgroundActiveColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundHoverBrush" Color="{StaticResource BackgroundHoverColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundPressBrush" Color="{StaticResource BackgroundPressColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundInactiveBrush" Color="{StaticResource BackgroundInactiveColor}" Opacity="1" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BorderBehindBrush" Color="{StaticResource BorderBehindColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderActiveBrush" Color="{StaticResource BorderActiveColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderHoverBrush" Color="{StaticResource BorderHoverColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderPressBrush" Color="{StaticResource BorderPressColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderInactiveBrush" Color="{StaticResource BorderInactiveColor}" Opacity="1" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="ForegroundBehindBrush" Color="{StaticResource ForegroundBehindColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundActiveBrush" Color="{StaticResource ForegroundActiveColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundSecondActiveBrush" Color="{StaticResource ForegroundSecondActiveColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundHoverBrush" Color="{StaticResource ForegroundHoverColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundPressBrush" Color="{StaticResource ForegroundPressColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundInactiveBrush" Color="{StaticResource ForegroundInactiveColor}" Opacity="1" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="ForegroundHyperlinkActiveBrush" Color="{StaticResource ForegroundHyperlinkActiveColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundHyperlinkHoverBrush" Color="{StaticResource ForegroundHyperlinkHoverColor}" Opacity="1" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="ToolBarBackgroundActiveBrush" Color="{StaticResource ToolBarBackgroundColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ToolBarButtonActiveBrush" Color="{StaticResource ToolBarButtonColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ToolMenuIconBrush" Color="{StaticResource ToolMenuIconColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ToolLineBrush" Color="{StaticResource ToolLineColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ToolPanelBrush" Color="{StaticResource ToolPanelColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ToolShadowBrush" Color="{StaticResource ToolShadowColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ToolBasicBackgroundBrush" Color="{StaticResource ToolBasicBackgroundColor}" Opacity="1" Options:Freeze="True"/>
+    
+    <SolidColorBrush x:Key="MessageActiveBrush" Color="{StaticResource MessageColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="SuccessActiveBrush" Color="{StaticResource SuccessColor}" Opacity="1" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="MistakeActiveBrush" Color="{StaticResource MistakeColor}" Opacity="1" Options:Freeze="True"/>
+
+    <!--#endregion-->
+
+    <!--#region Accent Brush-->
+
+    <!--#region Background-->
+
+    <SolidColorBrush x:Key="BackgroundBehindBrush.Accent1" Color="{StaticResource BackgroundBehindColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundBehindBrush.Accent2" Color="{StaticResource BackgroundBehindColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundBehindBrush.Accent3" Color="{StaticResource BackgroundBehindColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundBehindBrush.Accent4" Color="{StaticResource BackgroundBehindColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BackgroundActiveBrush.Accent1" Color="{StaticResource BackgroundActiveColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundActiveBrush.Accent2" Color="{StaticResource BackgroundActiveColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundActiveBrush.Accent3" Color="{StaticResource BackgroundActiveColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundActiveBrush.Accent4" Color="{StaticResource BackgroundActiveColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BackgroundHoverBrush.Accent1" Color="{StaticResource BackgroundHoverColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundHoverBrush.Accent2" Color="{StaticResource BackgroundHoverColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundHoverBrush.Accent3" Color="{StaticResource BackgroundHoverColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundHoverBrush.Accent4" Color="{StaticResource BackgroundHoverColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BackgroundPressBrush.Accent1" Color="{StaticResource BackgroundPressColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundPressBrush.Accent2" Color="{StaticResource BackgroundPressColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundPressBrush.Accent3" Color="{StaticResource BackgroundPressColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundPressBrush.Accent4" Color="{StaticResource BackgroundPressColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BackgroundInactiveBrush.Accent1" Color="{StaticResource BackgroundInactiveColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundInactiveBrush.Accent2" Color="{StaticResource BackgroundInactiveColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundInactiveBrush.Accent3" Color="{StaticResource BackgroundInactiveColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BackgroundInactiveBrush.Accent4" Color="{StaticResource BackgroundInactiveColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <!--#endregion-->
+
+    <!--#region Border-->
+
+    <SolidColorBrush x:Key="BorderBehindBrush.Accent1" Color="{StaticResource BorderBehindColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderBehindBrush.Accent2" Color="{StaticResource BorderBehindColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderBehindBrush.Accent3" Color="{StaticResource BorderBehindColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderBehindBrush.Accent4" Color="{StaticResource BorderBehindColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BorderActiveBrush.Accent1" Color="{StaticResource BorderActiveColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderActiveBrush.Accent2" Color="{StaticResource BorderActiveColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderActiveBrush.Accent3" Color="{StaticResource BorderActiveColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderActiveBrush.Accent4" Color="{StaticResource BorderActiveColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BorderHoverBrush.Accent1" Color="{StaticResource BorderHoverColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderHoverBrush.Accent2" Color="{StaticResource BorderHoverColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderHoverBrush.Accent3" Color="{StaticResource BorderHoverColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderHoverBrush.Accent4" Color="{StaticResource BorderHoverColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BorderPressBrush.Accent1" Color="{StaticResource BorderPressColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderPressBrush.Accent2" Color="{StaticResource BorderPressColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderPressBrush.Accent3" Color="{StaticResource BorderPressColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderPressBrush.Accent4" Color="{StaticResource BorderPressColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BorderInactiveBrush.Accent1" Color="{StaticResource BorderInactiveColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderInactiveBrush.Accent2" Color="{StaticResource BorderInactiveColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderInactiveBrush.Accent3" Color="{StaticResource BorderInactiveColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="BorderInactiveBrush.Accent4" Color="{StaticResource BorderInactiveColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <!--#endregion-->
+
+    <!--#region Foreground-->
+
+    <SolidColorBrush x:Key="ForegroundBehindBrush.Accent1" Color="{StaticResource ForegroundBehindColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundBehindBrush.Accent2" Color="{StaticResource ForegroundBehindColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundBehindBrush.Accent3" Color="{StaticResource ForegroundBehindColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundBehindBrush.Accent4" Color="{StaticResource ForegroundBehindColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="ForegroundActiveBrush.Accent1" Color="{StaticResource ForegroundActiveColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundActiveBrush.Accent2" Color="{StaticResource ForegroundActiveColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundActiveBrush.Accent3" Color="{StaticResource ForegroundActiveColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundActiveBrush.Accent4" Color="{StaticResource ForegroundActiveColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="ForegroundHoverBrush.Accent1" Color="{StaticResource ForegroundHoverColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundHoverBrush.Accent2" Color="{StaticResource ForegroundHoverColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundHoverBrush.Accent3" Color="{StaticResource ForegroundHoverColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundHoverBrush.Accent4" Color="{StaticResource ForegroundHoverColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="ForegroundPressBrush.Accent1" Color="{StaticResource ForegroundPressColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundPressBrush.Accent2" Color="{StaticResource ForegroundPressColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundPressBrush.Accent3" Color="{StaticResource ForegroundPressColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundPressBrush.Accent4" Color="{StaticResource ForegroundPressColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <SolidColorBrush x:Key="ForegroundInactiveBrush.Accent1" Color="{StaticResource ForegroundInactiveColor}" Opacity="0.8" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundInactiveBrush.Accent2" Color="{StaticResource ForegroundInactiveColor}" Opacity="0.6" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundInactiveBrush.Accent3" Color="{StaticResource ForegroundInactiveColor}" Opacity="0.4" Options:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundInactiveBrush.Accent4" Color="{StaticResource ForegroundInactiveColor}" Opacity="0.2" Options:Freeze="True"/>
+
+    <!--#endregion-->
+
+    <!--#endregion-->
+
+</ResourceDictionary>

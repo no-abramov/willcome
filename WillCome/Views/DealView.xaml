@@ -1,0 +1,218 @@
+﻿<UserControl x:Class="WillCome.Views.DealView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WillCome.Views"
+             xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
+             xmlns:behaviors="clr-namespace:WillCome.Core.Behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="960" d:DesignWidth="1280">
+
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="StageTemplate">
+            <Border Width="320" Height="65" Background="{DynamicResource ToolPanelBrush}" CornerRadius="5" Padding="10" Margin="0,0,10,0">
+                <StackPanel Orientation="Horizontal">
+                    <!-- Полоска цвета -->
+                    <Border Width="3" Height="45" Background="{Binding Color, Converter={StaticResource IntToColorConverter}}" CornerRadius="1" />
+                    <!-- Информация об этапе -->
+                    <StackPanel Orientation="Vertical" Width="259" Height="45" Margin="10,0">
+                        <TextBlock Style="{StaticResource TextBlock.Ghost.Medium}" Text="{Binding Name}" FontSize="16"  HorizontalAlignment="Left" Width="259" MaxWidth="259" Margin="0,3,0,0"/>
+                        <TextBlock Style="{StaticResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundSecondActiveBrush}" Text="{Binding DealsSummary}" HorizontalAlignment="Left" Width="259" MaxWidth="259" Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <!-- Действия -->
+                    <StackPanel Orientation="Vertical" Width="18" Height="45">
+                        <Button Style="{StaticResource WillComeUI.Button.OnlyIcon.Solo}" Width="18" Height="18" Tag="{StaticResource IconPath_Deal-Edit-Stage}" Padding="3" BorderThickness="0" Command="{Binding EditStageCommand}" />
+                        <Button Style="{StaticResource WillComeUI.Button.OnlyIcon.Solid}" Tag="{StaticResource IconPath_Deal-Add-Stage}" Width="18" Height="18" Padding="4" Margin="0,9,0,0" Command="{Binding AddStageCommand}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DealTemplate">
+            <Border Width="320" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="10,0">
+                <Border Padding="10" Background="{DynamicResource BackgroundBehindBrush}" CornerRadius="5" Margin="0,0,0,10">
+                    <StackPanel Orientation="Vertical">
+                        <!-- Ответственный за сделку -->
+                        <Grid>
+                            <TextBlock Style="{StaticResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundSecondActiveBrush}" Text="{Binding ResponsibleFullName}" HorizontalAlignment="Left" MaxWidth="252" />
+                            <Button Style="{StaticResource WillComeUI.Button.OnlyIcon.Solo}" Width="18" Height="18" Tag="{StaticResource IconPath_Deal-Edit-Stage}" Padding="3" BorderThickness="0" HorizontalAlignment="Right" />
+                        </Grid>
+
+                        <!-- Название сделки -->
+                        <TextBlock Style="{StaticResource TextBlock.Ghost.Medium}" Foreground="{DynamicResource ForegroundActiveBrush}" FontSize="16" Text="{Binding DealName}" MaxWidth="280" Margin="0,5" />
+
+                        <!-- Бюджет и дата создания -->
+                        <Grid Margin="0,0,0,10">
+                            <TextBlock Style="{StaticResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundSecondActiveBrush}" Text="{Binding Budget, StringFormat='Бюджет: {0:N2} ₽'}" HorizontalAlignment="Left" MaxWidth="180" />
+                            <TextBlock Style="{StaticResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundSecondActiveBrush}" Text="{Binding CreateDate, StringFormat='{}{0:dd.MM.yyyy}'}" HorizontalAlignment="Right" TextAlignment="Right" MaxWidth="252" />
+                        </Grid>
+
+                        <!-- Разделительная линия -->
+                        <Line X1="0" Y1="0" X2="300" Y2="0" Stroke="{DynamicResource ToolLineBrush}" StrokeThickness="2" />
+
+                        <!-- Информация о контакте -->
+                        <StackPanel x:Name="Contact" Margin="0,10,0,0">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ContactType}" Value="None">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <TextBlock Style="{StaticResource TextBlock.Ghost.Medium}" Foreground="{DynamicResource ForegroundHyperlinkActiveBrush}" FontSize="16" Text="{Binding ContactName}" MaxWidth="280" />
+                            <TextBlock Style="{StaticResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundActiveBrush}" Text="{Binding ContactPhone}" MaxWidth="280" Margin="0,5,0,0" />
+                        </StackPanel>
+
+                        <!-- Дополнительная информация -->
+                        <Grid Margin="0,30,0,0">
+                            <Ellipse x:Name="TaskIndicator" Width="5" Height="5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,1">
+                                <Ellipse.Style>
+                                    <Style TargetType="Ellipse">
+                                        <Setter Property="Fill" Value="{DynamicResource BackgroundActiveBrush}" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding TaskSummary}" Value="0">
+                                                <Setter Property="Fill" Value="{DynamicResource MistakeActiveBrush}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Ellipse.Style>
+                            </Ellipse>
+
+                            <!-- Текст задачи -->
+                            <TextBlock Text="{Binding TaskSummary, Converter={StaticResource TaskSummaryConverter}}" HorizontalAlignment="Left" MaxWidth="140" Margin="10,0,0,0">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlock.Ghost.Small}">
+                                        <Setter Property="Foreground" Value="{DynamicResource BackgroundActiveBrush}" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding TaskSummary}" Value="0">
+                                                <Setter Property="Foreground" Value="{DynamicResource MistakeActiveBrush}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <!-- Текст прошедших дней -->
+                            <TextBlock Style="{StaticResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundSecondActiveBrush}" HorizontalAlignment="Right" TextAlignment="Right" MaxWidth="100" Text="{Binding CreateDate, Converter={StaticResource DaysRemainingConverter}}" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CustomDragAdornerTemplate">
+            <Border Background="{DynamicResource BackgroundBehindBrush}" CornerRadius="5" Margin="20">
+                <Border.Effect>
+                    <DropShadowEffect Color="{DynamicResource ToolShadowColor}" ShadowDepth="2" Opacity="0.2" BlurRadius="10" />
+                </Border.Effect>
+                <StackPanel Orientation="Vertical">
+                    <Border CornerRadius="5,5,0,0" Background="{DynamicResource BackgroundActiveBrush}" Height="20" Width="300" />
+
+                    <!-- Название сделки -->
+                    <TextBlock Style="{StaticResource TextBlock.Ghost.Medium}" Foreground="{DynamicResource ForegroundActiveBrush}" FontSize="16" Text="{Binding DealName}" MaxWidth="280" Margin="0,10,0,5" />
+
+                    <!-- Бюджет и дата создания -->
+                    <Grid Margin="10,0,0,10">
+                        <TextBlock Style="{StaticResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundSecondActiveBrush}" Text="{Binding Budget, StringFormat='Бюджет: {0:N2} ₽'}" HorizontalAlignment="Left" MaxWidth="180" />
+                        <TextBlock Style="{StaticResource TextBlock.Ghost.Small}" Foreground="{DynamicResource ForegroundSecondActiveBrush}" Text="{Binding CreateDate, StringFormat='{}{0:dd.MM.yyyy}'}" HorizontalAlignment="Right" TextAlignment="Right" MaxWidth="252" Margin="0,0,10,0" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Border CornerRadius="5" Background="{DynamicResource BackgroundBehindBrush}">
+        <Grid Cursor="">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="72" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="380" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="215" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Style="{StaticResource WillComeUI.Button.Solid.Small}" Command="{Binding RegisterCommand}" Content="Создать воронки" Width="173" Height="32" Cursor="Hand" Margin="0,0,10,0"/>
+                    <Button Style="{StaticResource WillComeUI.Button.OnlyIcon.Borderless}" Tag="{StaticResource IconPath_Deal-Settings-Kanban}" Command="{Binding AddStageCommand}" Width="32" Height="32" IsEnabled="True" Padding="7" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Height="1" Background="{DynamicResource BackgroundActiveBrush.Accent4}" />
+
+            <Border x:Name="Kanban" Grid.Row="2" CornerRadius="5" Background="{DynamicResource BackgroundBehindBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="15,20,20,20">
+                <ScrollViewer x:Name="Kanban_ScrollViewer"
+                        behaviors:DragScrollBehavior.IsEnabled="True"
+                        HorizontalScrollBarVisibility="Auto" 
+                        VerticalScrollBarVisibility="Auto"
+                        CanContentScroll="False"
+                        Focusable="True"
+                        AllowDrop="True"
+                        Padding="0,0,0,10">
+                    <Grid AllowDrop="True" Margin="5,0,0,0">
+                        <!-- Две строки: этапы и сделки -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <!-- Закрепленные этапы -->
+                            <RowDefinition Height="*" />
+                            <!-- Сделки -->
+                        </Grid.RowDefinitions>
+
+                        <!-- Этапы -->
+                        <ItemsControl Grid.Row="0" ItemsSource="{Binding SelectedFunnel.Stages}" ItemTemplate="{StaticResource StageTemplate}" AllowDrop="True">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="1" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+
+                        <!-- Сделки -->
+                        <ItemsControl Grid.Row="1" AllowDrop="True"
+                                        ItemsSource="{Binding SelectedFunnel.Stages}" 
+                                        dd:DragDrop.DropHandler="{Binding}"
+                                        dd:DragDrop.UseDefaultDragAdorner="True"
+                                        dd:DragDrop.IsDropTarget="True" 
+                                        dd:DragDrop.DropTargetAdornerBrush="{DynamicResource BackgroundActiveBrush}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="{Binding SelectedFunnel.Stages.Count}" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="{DynamicResource ToolPanelBrush}" CornerRadius="5" Padding="0,10,0,0" Margin="0,10,10,0" MinHeight="150" AllowDrop="True">
+                                        <ItemsControl ItemsSource="{Binding Deals}" 
+                                                ItemTemplate="{StaticResource DealTemplate}"
+                                                dd:DragDrop.IsDragSource="True"
+                                                dd:DragDrop.IsDropTarget="True"
+                                                dd:DragDrop.UseDefaultDragAdorner="True"
+                                                dd:DragDrop.DropHandler="{Binding}"
+                                                dd:DragDrop.DragAdornerTemplate="{StaticResource CustomDragAdornerTemplate}"
+                                                dd:DragDrop.DropTargetAdornerBrush="{DynamicResource BackgroundActiveBrush}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Vertical" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

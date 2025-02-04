@@ -1,0 +1,59 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="FamilyBase">Open Sans</FontFamily>
+    <FontFamily x:Key="TextFontFamilyBase">Open Sans</FontFamily>
+    <FontFamily x:Key="OpenSans-Bold">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-Bold.ttf #Open Sans</FontFamily>
+    <FontFamily x:Key="OpenSans-BoldItalic">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-BoldItalic.ttf #Open Sans</FontFamily>
+    <FontFamily x:Key="OpenSans-ExtraBold">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-ExtraBold.ttf #Open Sans ExtraBold</FontFamily>
+    <FontFamily x:Key="OpenSans-ExtraBoldItalic">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-ExtraBoldItalic.ttf #Open Sans ExtraBold</FontFamily>
+    <FontFamily x:Key="OpenSans-Italic">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-Italic.ttf #Open Sans</FontFamily>
+    <FontFamily x:Key="OpenSans-Light">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-Light.ttf #Open Sans Light</FontFamily>
+    <FontFamily x:Key="OpenSans-LightItalic">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-LightItalic.ttf #Open Sans Light</FontFamily>
+    <FontFamily x:Key="OpenSans-Regular">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-Regular.ttf #Open Sans</FontFamily>
+    <FontFamily x:Key="OpenSans-Semibold">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-Semibold.ttf #Open Sans Semibold</FontFamily>
+    <FontFamily x:Key="OpenSans-SemiboldItalic">pack://application:,,,/Theme;Component/Themes/Fonts/OpenSans-SemiboldItalic.ttf #Open Sans Semibold</FontFamily>
+
+    <Style x:Key="TextBlock.Base" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{DynamicResource FamilyBase}"/>
+        <Setter Property="FontSize" Value="12.6776"/>
+        <Setter Property="Foreground" Value="{DynamicResource ColorTextActive}"/>
+    </Style>
+
+    <Style x:Key="TextBlock.Ghost" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{DynamicResource TextFontFamilyBase}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TextSize.Small}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ColorTextActive}"/>
+    </Style>
+
+    <Style x:Key="TextBlock.Ghost.Small" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{DynamicResource TextFontFamilyBase}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TextSize.Small}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundActiveBrush}"/>
+    </Style>
+
+    <Style x:Key="TextBlock.Ghost.Medium" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{DynamicResource TextFontFamilyBase}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TextSize.Medium}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundActiveBrush}"/>
+    </Style>
+
+    <Style x:Key="TextBlock.Ghost.Large" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource TextFontFamilyBase}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TextSize.Large}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundActiveBrush}"/>
+    </Style>
+
+    <Style x:Key="TextBlock.Ghost.Title" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{DynamicResource TextFontFamilyBase}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TextSize.Title}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundActiveBrush}"/>
+    </Style>
+
+    <Style x:Key="TextBlock.Ghost.Content" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{DynamicResource TextFontFamilyBase}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TextSize.Content}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundActiveBrush}"/>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,41 @@
+﻿<CoreControls:WindowControl x:Class="WillCome.ModalWindows.NotificationWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:CoreControls="clr-namespace:Theme.Core.Controls;assembly=Theme"
+        xmlns:converters="clr-namespace:Theme.Core.Converts;assembly=Theme" 
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" 
+        SizeToContent="Height" MaxWidth="460" CoreControls:ShowToolBar="False"
+        Title="{Binding DisplayName}" Style="{StaticResource StyleWindow.Notification}">
+
+    <Grid Cursor="">
+        <Grid.Resources>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,5,10,0">
+            <Image Source="{Binding NotificationStatus, Converter={StaticResource NotificationStatusToIconConverter}}" Stretch="Uniform" Width="20" Height="20"/>
+            <TextBlock Style="{StaticResource TextBlock.Ghost.Large}" Text="{Binding Title}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Style="{StaticResource TextBlock.Ghost.Small}" Text="{Binding Description}" TextWrapping="Wrap" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,10,30" />
+
+        <Line Grid.Row="2" Stroke="{DynamicResource BackgroundActiveBrush.Accent4}" StrokeThickness="1" X1="0" X2="440" Margin="10,5,10,0"/>
+
+        <Grid Grid.Row="3" Margin="10">
+            <Expander Header="Данные для отдела поддержки" HorizontalAlignment="Left" Foreground="{DynamicResource ForegroundActiveBrush}" FontFamily="{DynamicResource FamilyBase}" FontSize="{DynamicResource TextSize.Small}" Margin="0,0,10,0" Width="440" Visibility="{Binding SupportData, Converter={StaticResource NullToVisibilityConverter}}">
+                <TextBlock Style="{StaticResource TextBlock.Ghost.Small}" Text="{Binding SupportData}" TextWrapping="Wrap" Margin="0,20,0,0"/>
+            </Expander>
+
+            <Button Grid.Column="1" Style="{StaticResource WillComeUI.Button.Solid.Small}" Command="{Binding AcceptCommand}" Content="{Binding ContentButton}" Width="120" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        </Grid>
+    </Grid>
+</CoreControls:WindowControl>
